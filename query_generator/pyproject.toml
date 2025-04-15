@@ -1,0 +1,17 @@
+[project]
+name = "query_generator"
+version = "0.1.0"
+description = "query_generator using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.86.0,<1.0.0",
+]
+
+[project.scripts]
+kickoff = "query_generator.main:kickoff"
+plot = "query_generator.main:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

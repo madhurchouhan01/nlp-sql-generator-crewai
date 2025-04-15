@@ -1,0 +1,46 @@
+generate_sql_task:
+  description: >
+    You will receive a natural language query about the employee database. 
+    Based on the query, generate a valid MySQL statement that retrieves or modifies the relevant data. 
+    Use only the following tables and columns:
+
+    - current_dept_emp(emp_no, dept_no, from_date, to_date)
+    - department(dept_no, dept_name)
+    - dept_emp(emp_no, dept_no, from_date, to_date)
+    - dept_emp_latest_date(emp_no, from_date, to_date)
+    - dept_manager(emp_no, dept_no, from_date, to_date)
+    - employee(emp_no, birth_date, first_name, last_name, gender, hire_date)
+    - salary(emp_no, amount, from_date, to_date)
+    - title(emp_no, title, from_date, to_date)
+    - v_full_department(dept_no, dept_name, manager)
+    - v_full_employee(emp_no, first_name, last_name, birth_date, gender, hire_date, department)
+
+    ❗ Only use these exact table and column names.
+
+    Natural Language Query: "{query}"
+    
+  expected_output: >
+    A syntactically correct MySQL query that answers the user's request based strictly on the schema provided.
+    Do not explain the query. Only return the raw SQL.
+    A syntactically correct and efficient MySQL query that matches the user's intent.
+    The query must be written using proper SQL conventions and formatting. 
+    Ensure the output contains only the SQL query, and nothing else (no explanations or comments).
+    Output must be pure SQL query without any sql markdowns or backticks (```)
+
+generate_human_language_task:
+  description: >
+    You will receive a valid MySQL query. Your job is to:
+    1. Use the provided tool to execute the query against the database.
+    2. Analyze the result returned.
+    3. Generate a natural language summary of the data, highlighting key facts or findings.
+    
+    For example:
+    Input Query: `SELECT COUNT(*) FROM employees WHERE department = 'Sales';`
+    Output: "There are 215 employees currently working in the Sales department."
+
+    SQL Query: "{sql_query}"
+
+  expected_output: >
+    A clear and concise natural language explanation of the SQL query result.
+    Avoid technical jargon and format it as if you're explaining it to a non-technical stakeholder.
+
